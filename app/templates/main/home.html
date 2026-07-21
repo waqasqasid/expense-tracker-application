@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Expense Tracker — Take control of your money{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="badge rounded-pill text-bg-light border text-primary mb-3 px-3 py-2">
+          <i class="bi bi-stars me-1"></i> Personal finance, simplified
+        </span>
+        <h1 class="display-5 fw-800 section-heading mb-3">Know exactly where<br>your money goes.</h1>
+        <p class="lead text-muted mb-4">
+          Track income and expenses, organize by category, and see interactive
+          reports that make your spending patterns obvious at a glance.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-4">Get Started Free</a>
+          <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary btn-lg px-4">Log In</a>
+        </div>
+        <div class="d-flex gap-4 mt-4 text-muted small">
+          <div><i class="bi bi-shield-check text-success me-1"></i> Secure & private</div>
+          <div><i class="bi bi-graph-up text-success me-1"></i> Visual reports</div>
+          <div><i class="bi bi-moon-stars text-success me-1"></i> Dark mode</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-mockup bg-white p-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="fw-bold">This Month</div>
+            <span class="badge bg-success-subtle text-success">+ $2,430.00</span>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-4">
+              <div class="p-3 rounded-3" style="background:#ecfdf3;">
+                <div class="small text-muted">Income</div>
+                <div class="fw-bold text-success">$5,200</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-3 rounded-3" style="background:#fef2f2;">
+                <div class="small text-muted">Expense</div>
+                <div class="fw-bold text-danger">$2,770</div>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-3 rounded-3" style="background:#eef2ff;">
+                <div class="small text-muted">Balance</div>
+                <div class="fw-bold text-primary">$2,430</div>
+              </div>
+            </div>
+          </div>
+          <div class="border rounded-3 p-3">
+            <div class="d-flex justify-content-between small mb-2"><span>Food</span><span class="fw-semibold">$420</span></div>
+            <div class="progress mb-3" style="height:6px;"><div class="progress-bar bg-primary" style="width:65%"></div></div>
+            <div class="d-flex justify-content-between small mb-2"><span>Transport</span><span class="fw-semibold">$180</span></div>
+            <div class="progress mb-3" style="height:6px;"><div class="progress-bar" style="width:30%; background:#7c3aed;"></div></div>
+            <div class="d-flex justify-content-between small mb-2"><span>Shopping</span><span class="fw-semibold">$310</span></div>
+            <div class="progress" style="height:6px;"><div class="progress-bar" style="width:48%; background:#06b6d4;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="py-5">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="section-heading">Everything you need to manage your money</h2>
+      <p class="text-muted">A complete toolkit for personal finance tracking.</p>
+    </div>
+    <div class="row g-4">
+      {% set features = [
+        ("bi-wallet2", "Income & Expense Tracking", "Log every transaction with category, payment method, date, and notes."),
+        ("bi-pie-chart-fill", "Visual Reports", "Interactive pie, bar, and line charts powered by Chart.js."),
+        ("bi-funnel-fill", "Powerful Filters", "Search and filter by date range, category, payment method, and amount."),
+        ("bi-file-earmark-arrow-down", "Export Anywhere", "Download your transactions and reports as CSV or PDF."),
+        ("bi-tags-fill", "Custom Categories", "Use predefined categories or create your own."),
+        ("bi-moon-stars-fill", "Dark Mode", "A comfortable, responsive interface on any device."),
+      ] %}
+      {% for icon, title, desc in features %}
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 h-100 border rounded-4 bg-white">
+          <div class="feature-icon mb-3"><i class="bi {{ icon }}"></i></div>
+          <h5 class="fw-bold">{{ title }}</h5>
+          <p class="text-muted mb-0">{{ desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="about" class="py-5 bg-white border-top">
+  <div class="container py-4 text-center">
+    <h2 class="section-heading mb-3">Ready to take control of your finances?</h2>
+    <p class="text-muted mb-4">Create a free account in seconds — no credit card required.</p>
+    <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-lg px-5">Create Your Free Account</a>
+  </div>
+</section>
+
+<footer class="py-4 text-center text-muted small border-top bg-white">
+  &copy; {{ current_year }} ExpenseTracker. Built with Flask.
+</footer>
+{% endblock %}

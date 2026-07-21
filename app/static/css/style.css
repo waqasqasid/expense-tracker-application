@@ -1,0 +1,260 @@
+/* =========================================================
+   Expense Tracker — Design tokens & core styles
+   Palette: Indigo primary, ledger-inspired data typography
+   ========================================================= */
+:root {
+  --et-primary: #4f46e5;
+  --et-primary-dark: #4338ca;
+  --et-primary-light: #eef2ff;
+  --et-success: #16a34a;
+  --et-success-light: #ecfdf3;
+  --et-danger: #dc2626;
+  --et-danger-light: #fef2f2;
+  --et-warning: #d97706;
+  --et-bg: #f6f7fb;
+  --et-surface: #ffffff;
+  --et-border: #e6e8f0;
+  --et-text: #1a1d29;
+  --et-text-muted: #6b7280;
+  --et-radius: 14px;
+  --et-radius-sm: 9px;
+  --sidebar-width: 250px;
+  --topbar-height: 68px;
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-ui);
+  background: var(--et-bg);
+  color: var(--et-text);
+  min-height: 100vh;
+}
+
+a { text-decoration: none; }
+
+/* ---------- Brand ---------- */
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--et-primary), #7c3aed);
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+/* ---------- Public navbar ---------- */
+.public-navbar { border-bottom: 1px solid var(--et-border); }
+.public-navbar .navbar-brand { font-size: 1.2rem; color: var(--et-text); }
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background-color: var(--et-primary);
+  border-color: var(--et-primary);
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--et-primary-dark);
+  border-color: var(--et-primary-dark);
+}
+.btn-icon {
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  border: 1px solid var(--et-border);
+  background: var(--et-surface);
+  color: var(--et-text);
+}
+.btn-icon:hover { background: var(--et-primary-light); color: var(--et-primary); }
+
+/* ---------- Sidebar shell ---------- */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--et-surface);
+  border-right: 1px solid var(--et-border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1rem;
+  z-index: 1040;
+  transition: transform .25s ease;
+}
+.sidebar-brand {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 .25rem .5rem .25rem;
+  margin-bottom: .75rem;
+}
+.brand-text { font-weight: 800; font-size: 1.05rem; color: var(--et-text); }
+.sidebar-nav { display: flex; flex-direction: column; gap: 2px; flex: 1; overflow-y: auto; }
+.sidebar-link {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .65rem .85rem;
+  border-radius: var(--et-radius-sm);
+  color: var(--et-text-muted);
+  font-weight: 500;
+  font-size: .92rem;
+  transition: background .15s, color .15s;
+}
+.sidebar-link i { font-size: 1.05rem; width: 20px; text-align: center; }
+.sidebar-link:hover { background: var(--et-primary-light); color: var(--et-primary); }
+.sidebar-link.active { background: var(--et-primary); color: #fff; }
+.sidebar-divider { height: 1px; background: var(--et-border); margin: .6rem .25rem; }
+.sidebar-footer {
+  display: flex; align-items: center; gap: .6rem;
+  padding: .75rem .5rem 0 .5rem;
+  border-top: 1px solid var(--et-border);
+  margin-top: .5rem;
+}
+.avatar-sm { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: var(--et-primary-light); }
+.sidebar-backdrop {
+  display: none;
+  position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 1035;
+}
+
+/* ---------- Main content / topbar ---------- */
+body.has-sidebar .main-content { margin-left: var(--sidebar-width); }
+.topbar {
+  height: var(--topbar-height);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  background: var(--et-surface);
+  border-bottom: 1px solid var(--et-border);
+  position: sticky; top: 0; z-index: 1020;
+}
+.topbar-title { font-size: 1.15rem; font-weight: 700; }
+.topbar-actions { display: flex; align-items: center; gap: .6rem; }
+.page-body { padding: 1.5rem; max-width: 1400px; }
+
+/* ---------- Cards ---------- */
+.card {
+  border: 1px solid var(--et-border);
+  border-radius: var(--et-radius);
+  background: var(--et-surface);
+}
+.stat-card {
+  padding: 1.25rem 1.4rem;
+  border-radius: var(--et-radius);
+  border: 1px solid var(--et-border);
+  background: var(--et-surface);
+  position: relative;
+  overflow: hidden;
+}
+.stat-card .stat-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: .75rem;
+}
+.stat-card .stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.stat-card .stat-label { color: var(--et-text-muted); font-size: .85rem; font-weight: 500; }
+.stat-income .stat-icon { background: var(--et-success-light); color: var(--et-success); }
+.stat-expense .stat-icon { background: var(--et-danger-light); color: var(--et-danger); }
+.stat-balance .stat-icon { background: var(--et-primary-light); color: var(--et-primary); }
+.stat-budget .stat-icon { background: #fffbeb; color: var(--et-warning); }
+
+.amount-mono { font-family: var(--font-mono); font-weight: 600; }
+.text-income { color: var(--et-success); }
+.text-expense { color: var(--et-danger); }
+
+/* ---------- Category pill ---------- */
+.category-badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .3rem .65rem;
+  border-radius: 999px;
+  background: var(--et-primary-light);
+  color: var(--et-primary);
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+/* ---------- Tables ---------- */
+.table-modern thead th {
+  border-bottom: 2px solid var(--et-border);
+  color: var(--et-text-muted);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 700;
+}
+.table-modern tbody tr { border-bottom: 1px solid var(--et-border); }
+.table-modern tbody tr:hover { background: var(--et-primary-light); }
+
+/* ---------- Auth pages ---------- */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+}
+.auth-visual {
+  flex: 1.1;
+  background: radial-gradient(circle at 20% 20%, #6d5ef7, #4f46e5 55%, #3730a3);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.auth-visual::after {
+  content: "";
+  position: absolute;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  bottom: -160px; right: -120px;
+}
+.auth-form-side {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: var(--et-surface);
+}
+.auth-card { width: 100%; max-width: 420px; }
+
+/* ---------- Landing page (home) ---------- */
+.hero-section {
+  background: linear-gradient(180deg, #f6f7fb 0%, #eef2ff 100%);
+  padding: 5.5rem 0 4rem;
+}
+.hero-mockup {
+  border-radius: 20px;
+  box-shadow: 0 30px 60px -20px rgba(79,70,229,.35);
+  border: 1px solid var(--et-border);
+}
+.feature-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--et-primary-light);
+  color: var(--et-primary);
+  font-size: 1.4rem;
+}
+
+/* ---------- Chart containers ---------- */
+.chart-container { position: relative; height: 300px; }
+.chart-container-sm { position: relative; height: 220px; }
+
+/* ---------- Utility ---------- */
+.section-heading { font-weight: 800; letter-spacing: -0.5px; }
+.form-label { font-weight: 600; font-size: .87rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991.98px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.show { transform: translateX(0); }
+  body.has-sidebar .main-content { margin-left: 0; }
+  .sidebar-backdrop.show { display: block; }
+}

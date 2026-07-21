@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Categories — Expense Tracker{% endblock %}
+{% block page_title %}Categories{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <p class="text-muted mb-0">Organize your transactions with predefined or custom categories.</p>
+  <a href="{{ url_for('categories.add_category') }}" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> New Category</a>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-6">
+    <div class="card p-3">
+      <h6 class="fw-bold mb-3"><i class="bi bi-arrow-down-circle-fill text-success me-1"></i> Income Categories</h6>
+      {% if income_categories %}
+      <div class="list-group list-group-flush">
+        {% for cat in income_categories %}
+        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+          <span class="category-badge"><i class="bi {{ cat.icon }}"></i> {{ cat.name }}</span>
+          <div class="d-flex gap-1">
+            <a href="{{ url_for('categories.edit_category', cat_id=cat.id) }}" class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil"></i></a>
+            <form action="{{ url_for('categories.delete_category', cat_id=cat.id) }}" method="POST" class="d-inline confirm-delete" data-confirm-message="Delete this category?">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button type="submit" class="btn btn-sm btn-icon text-danger" title="Delete"><i class="bi bi-trash"></i></button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-muted mb-0">No income categories yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card p-3">
+      <h6 class="fw-bold mb-3"><i class="bi bi-arrow-up-circle-fill text-danger me-1"></i> Expense Categories</h6>
+      {% if expense_categories %}
+      <div class="list-group list-group-flush">
+        {% for cat in expense_categories %}
+        <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+          <span class="category-badge"><i class="bi {{ cat.icon }}"></i> {{ cat.name }}</span>
+          <div class="d-flex gap-1">
+            <a href="{{ url_for('categories.edit_category', cat_id=cat.id) }}" class="btn btn-sm btn-icon" title="Edit"><i class="bi bi-pencil"></i></a>
+            <form action="{{ url_for('categories.delete_category', cat_id=cat.id) }}" method="POST" class="d-inline confirm-delete" data-confirm-message="Delete this category?">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button type="submit" class="btn btn-sm btn-icon text-danger" title="Delete"><i class="bi bi-trash"></i></button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-muted mb-0">No expense categories yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

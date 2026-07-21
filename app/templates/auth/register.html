@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Sign Up — Expense Tracker{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+  <div class="auth-visual d-none d-lg-flex">
+    <div style="position:relative; z-index:1;">
+      <div class="brand-icon mb-4" style="background:rgba(255,255,255,.15);"><i class="bi bi-wallet2"></i></div>
+      <h2 class="fw-800 mb-3">Start tracking today.</h2>
+      <p class="opacity-75 fs-5" style="max-width:420px;">
+        It takes less than a minute to set up your account and start
+        building healthy financial habits.
+      </p>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-card">
+      <div class="mb-4">
+        <a href="{{ url_for('main.home') }}" class="d-inline-flex align-items-center gap-2 text-decoration-none mb-4">
+          <span class="brand-icon"><i class="bi bi-wallet2"></i></span>
+          <span class="fw-800 fs-5 text-dark">Expense<span class="text-primary">Tracker</span></span>
+        </a>
+        <h3 class="fw-bold mb-1">Create your account</h3>
+        <p class="text-muted">Free forever. No credit card needed.</p>
+      </div>
+
+      {% include 'partials/flash_messages.html' %}
+
+      <form method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+          {{ form.full_name.label(class="form-label") }}
+          {{ form.full_name(class="form-control" + (" is-invalid" if form.full_name.errors else ""), placeholder="John Doe", autofocus=true) }}
+          {% for error in form.full_name.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="mb-3">
+          {{ form.username.label(class="form-label") }}
+          {{ form.username(class="form-control" + (" is-invalid" if form.username.errors else ""), placeholder="johndoe") }}
+          {% for error in form.username.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="mb-3">
+          {{ form.email.label(class="form-label") }}
+          {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else ""), placeholder="you@example.com") }}
+          {% for error in form.email.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            {{ form.password.label(class="form-label") }}
+            {{ form.password(class="form-control" + (" is-invalid" if form.password.errors else ""), placeholder="••••••••") }}
+            {% for error in form.password.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+          </div>
+          <div class="col-md-6 mb-3">
+            {{ form.confirm_password.label(class="form-label") }}
+            {{ form.confirm_password(class="form-control" + (" is-invalid" if form.confirm_password.errors else ""), placeholder="••••••••") }}
+            {% for error in form.confirm_password.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+          </div>
+        </div>
+        {{ form.submit(class="btn btn-primary w-100 py-2 mt-2") }}
+      </form>
+
+      <p class="text-center text-muted mt-4 mb-0">
+        Already have an account? <a href="{{ url_for('auth.login') }}" class="fw-semibold">Log in</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

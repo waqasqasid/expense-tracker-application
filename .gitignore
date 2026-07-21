@@ -1,0 +1,32 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables
+.env
+
+# Database
+instance/
+*.db
+*.sqlite3
+
+# Migrations (generated locally — comment out if you want to version them)
+# migrations/
+
+# Uploaded receipts
+app/static/uploads/receipts/*
+!app/static/uploads/receipts/.gitkeep
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Flask
+*.log

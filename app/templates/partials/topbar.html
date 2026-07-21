@@ -1,0 +1,24 @@
+<header class="topbar">
+  <button class="btn btn-icon d-lg-none" id="sidebarToggle" aria-label="Open menu">
+    <i class="bi bi-list fs-3"></i>
+  </button>
+
+  <h1 class="topbar-title mb-0">{% block page_title %}Dashboard{% endblock %}</h1>
+
+  <div class="topbar-actions">
+    <div class="dropdown d-none d-sm-block">
+      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <i class="bi bi-plus-lg"></i> Quick Add
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end shadow">
+        <li><a class="dropdown-item" href="{{ url_for('transactions.add_transaction') }}?type=income"><i class="bi bi-cash-coin text-success me-2"></i>Add Income</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('transactions.add_transaction') }}?type=expense"><i class="bi bi-cart-dash text-danger me-2"></i>Add Expense</a></li>
+      </ul>
+    </div>
+
+    <button class="btn btn-icon" id="themeToggleBtn" title="Toggle dark mode">
+      <i class="bi bi-moon-stars-fill" id="themeIconDark"></i>
+      <i class="bi bi-sun-fill d-none" id="themeIconLight"></i>
+    </button>
+  </div>
+</header>

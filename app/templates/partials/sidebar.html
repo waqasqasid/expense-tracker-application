@@ -1,0 +1,54 @@
+<aside class="sidebar" id="appSidebar">
+  <div class="sidebar-brand">
+    <a href="{{ url_for('dashboard.index') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+      <span class="brand-icon"><i class="bi bi-wallet2"></i></span>
+      <span class="brand-text">Expense<span class="text-primary">Tracker</span></span>
+    </a>
+    <button class="btn-close d-lg-none" id="sidebarClose" aria-label="Close"></button>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="{{ url_for('dashboard.index') }}" class="sidebar-link {{ 'active' if request.endpoint == 'dashboard.index' }}">
+      <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
+    </a>
+    <a href="{{ url_for('transactions.list_transactions') }}" class="sidebar-link {{ 'active' if request.blueprint == 'transactions' }}">
+      <i class="bi bi-arrow-left-right"></i><span>Transactions</span>
+    </a>
+    <a href="{{ url_for('reports.index') }}" class="sidebar-link {{ 'active' if request.blueprint == 'reports' }}">
+      <i class="bi bi-bar-chart-line-fill"></i><span>Reports</span>
+    </a>
+    <a href="{{ url_for('categories.list_categories') }}" class="sidebar-link {{ 'active' if request.blueprint == 'categories' }}">
+      <i class="bi bi-tags-fill"></i><span>Categories</span>
+    </a>
+    <a href="{{ url_for('profile.index') }}" class="sidebar-link {{ 'active' if request.endpoint == 'profile.index' }}">
+      <i class="bi bi-person-fill"></i><span>Profile</span>
+    </a>
+    <a href="{{ url_for('profile.settings') }}" class="sidebar-link {{ 'active' if request.endpoint == 'profile.settings' }}">
+      <i class="bi bi-gear-fill"></i><span>Settings</span>
+    </a>
+
+    <div class="sidebar-divider"></div>
+
+    <a href="{{ url_for('transactions.add_transaction') }}?type=income" class="sidebar-link text-success">
+      <i class="bi bi-plus-circle-fill"></i><span>Add Income</span>
+    </a>
+    <a href="{{ url_for('transactions.add_transaction') }}?type=expense" class="sidebar-link text-danger">
+      <i class="bi bi-dash-circle-fill"></i><span>Add Expense</span>
+    </a>
+
+    <div class="sidebar-divider"></div>
+
+    <a href="{{ url_for('auth.logout') }}" class="sidebar-link text-danger-emphasis">
+      <i class="bi bi-box-arrow-right"></i><span>Logout</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <img src="{{ url_for('static', filename='img/avatar-placeholder.svg') }}" class="avatar-sm" alt="avatar" onerror="this.style.display='none'">
+    <div class="overflow-hidden">
+      <div class="fw-semibold text-truncate">{{ current_user.full_name }}</div>
+      <div class="small text-muted text-truncate">{{ current_user.email }}</div>
+    </div>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
