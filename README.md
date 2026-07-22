@@ -5,7 +5,7 @@ A complete, production-ready personal finance web application built with
 **SQLAlchemy ORM**, **Flask-Migrate**, **Flask-Login**, and **Flask-WTF**.
 Track income and expenses, visualize spending with **Chart.js**, generate
 monthly reports, and export to **CSV/PDF** — all in a responsive
-**Bootstrap 5** UI with dark mode support.
+**Bootstrap 5** UI with dark mode support
 
 ---
 
