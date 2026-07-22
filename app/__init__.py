@@ -23,8 +23,13 @@ def create_app(config_name=None):
     app.config.from_object(config_by_name[config_name])
 
     # Ensure instance & upload folders exist
-    os.makedirs(app.instance_path, exist_ok=True)
-    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+    
+    # os.makedirs(app.instance_path, exist_ok=True)
+    # os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+    if not os.environ.get("VERCEL"):
+        os.makedirs(app.instance_path, exist_ok=True)
+        os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+
 
     # --- Initialize extensions ---
     db.init_app(app)
