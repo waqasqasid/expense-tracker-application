@@ -213,5 +213,4 @@ until those transactions are reassigned or removed).
 
 ## 📄 License
 
-This project is provided as a learning/reference implementation and can
-be freely modified for personal or commercial use.
+This project is provided as a learning/reference implementation and can be freely modified for personal or commercial use. you can fork this repo and use. Thank you. 
