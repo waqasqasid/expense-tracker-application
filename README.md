@@ -141,7 +141,7 @@ upon registration — no seed command required.
 ```bash
 python run.py
 ```
-Visit **http://localhost:5000** — register an account and start tracking!
+Visit **https://expense-tracker-application-liard.vercel.app/** — register an account and start tracking!
 
 ### 7. (Optional) Run with a production WSGI server
 ```bash
